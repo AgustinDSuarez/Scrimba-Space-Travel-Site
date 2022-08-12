@@ -72,7 +72,10 @@ body {
     color: hsl( var(--clr-white));
     background-color: hsl( var(--clr-dark));
     line-height: 1.5;
-    min-height: 100vh;  
+    min-height: 100vh;
+    
+    display: grid;
+    grid-template-rows: min-content 1fr;
 }
 
 /* manejar más facil las imagenes */
@@ -126,6 +129,29 @@ select {
     margin-inline: auto;
     max-width: 80rem;
 }
+
+.grid-container {
+    display: grid;
+    
+}
+
+@media (min-width: 45rem) {
+    .grid-container {
+        column-gap: var(--container-gar, 2rem);
+    grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(2rem, 1fr);
+    }
+
+    .grid-container > *:first-child {
+        grid-column: 2;
+    }
+    
+    .grid-container > *:last-child {
+        grid-column: 3;
+    }
+
+
+}
+
 /* esto funciona para los lectores de pantalla para personas con vision reducida */
 .sr-only {
     position: absolute;
@@ -198,7 +224,7 @@ select {
 
 .large-button {
     position: relative;
-    display: grid;
+    display: inline-grid;
     z-index: 1;
     place-items: center;
     padding: 0 2em;
