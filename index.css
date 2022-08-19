@@ -102,6 +102,8 @@ body {
     overflow-x: hidden;
 }
 
+[hidden] { display: none !important; } /* El atributo hidden no funciona si el display es de block. Hay una clase de utilidad (d-block) que establece el display en block */
+
 /* manejar más facil las imagenes */
 
 img,
@@ -130,9 +132,9 @@ select {
     }
   }
 
-/*-----------------*/
+/*---------------------*/
 /* Clases de utilidad */
-/*-----------------*/
+/*-------------------*/
 
 .flex{
     display: flex;
@@ -561,6 +563,7 @@ body {
 .grid-container--destination > picture {
     grid-area: image;
     max-width: 60%;
+    align-self: start;
 }
 
 .grid-container--destination > .tab-list {
@@ -661,8 +664,7 @@ body {
             '. image content .';
     }
     
-    .grid-container--destination > picture,
-    .grid-container--crew {
+    .grid-container--destination > picture {
         max-width: 90%;
     }
      
@@ -672,14 +674,17 @@ body {
     }
 
     .grid-container--crew {
-        --flow-space: 2rem;
+        grid-template-columns: minmax(1rem, 1fr) minmax(0, 40rem) minmax(0, 23rem) minmax(1rem, 1fr);
+        justify-items: start;
         grid-template-areas: 
             '. title title .'
             '. content image .'
             '. tabs image .';
     }
 
-    .grid-container--crew > .dot-indicators {
-        justify-self: start;
+    .grid-container--crew > picture {
+        grid-column: span 2;
+        align-self: end;
+        max-width: 70%;
     }
 }
