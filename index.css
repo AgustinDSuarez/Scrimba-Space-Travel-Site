@@ -1,6 +1,6 @@
-/*-----------------*/
+/*-----------------------------*/
 /* Propiedades personalizadas */
-/*-----------------*/
+/*---------------------------*/
 
 :root{
     /* colores */
@@ -455,6 +455,7 @@ select {
     color: hsl( var(--clr-white));
     margin-bottom: 2em;
     border-color: hsl( var(--clr-white) / .25);
+    background-color: hsl( var(--clr-dark) / .25);
 }
 
 .number-indicators > *:hover,
@@ -525,6 +526,24 @@ body {
 @media (min-width: 45rem) {
     .crew {
         background-image: url(./assets/crew/background-crew-desktop.jpg);
+    }
+}
+
+/* tecnología */
+.technology {
+    background-image: url(./assets/technology/background-technology-mobile.jpg);
+}
+
+@media (min-width: 35rem) {
+    .technology {
+        background-position: center center;
+        background-image: url(./assets/technology/background-technology-tablet.jpg);
+    }
+}
+
+@media (min-width: 45rem) {
+    .technology {
+        background-image: url(./assets/technology/background-technology-desktop.jpg);
     }
 }
 
@@ -614,6 +633,31 @@ body {
     opacity: 0.5;
 }
 
+/* technology layout */
+
+.grid-container--technology {
+    --flow-space: 2rem;
+    grid-template-areas: 
+        'title'
+        'image'
+        'tabs'
+        'content';
+}
+
+
+.grid-container--technology > picture {
+    grid-area: image;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    max-width: 100vw;
+    width: 100vw;
+}
+
+.image-desktop {
+    display: none;
+}
+
+
 @media (min-width: 35em) {
     .numbered-title {
         justify-self: start;
@@ -631,6 +675,14 @@ body {
             'content'
             'tabs'
             'image';
+    }
+
+    .grid-container--technology {
+        grid-template-areas: 
+            'title'
+            'image'
+            'tabs'
+            'content';
     }
 
 }
@@ -687,4 +739,39 @@ body {
         align-self: end;
         max-width: 70%;
     }
+
+    .grid-container--technology {
+        text-align: left;
+        column-gap: var(--container-gap, 0rem);
+        grid-template-columns: minmax(2rem, 1fr) minmax(0, 5rem) repeat(2, minmax(0, 40rem)) minmax(2rem, 1fr);
+        row-gap: 0rem;
+        justify-content: start;
+        align-items: flex-start;
+        grid-template-areas: 
+            '. title title title3 .'
+            '. tabs content image .'
+            '.  .      .       .   .';
+    }   
+
+    .grid-container--technology .number-indicators {
+        grid-column: 2 !important;
+        flex-direction: column;
+      }
+
+      .grid-container--technology > picture {
+        grid-column: 4 !important;
+        max-width: 100%;
+    }
+
+    .image-mobile {
+        display: none;
+    }
+
+    .image-desktop {
+    display: unset;
+    grid-area: image;
+    margin-right: -50vw;
+    max-width: 100vw;   
+    }
+  
 }
